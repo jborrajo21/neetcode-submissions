@@ -1,0 +1,11 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+
+        dp = [0] * (n+2)
+
+        for i in range(n-2,-1,-1):
+            for j in range(i+1,n):
+                dp[i] = max([prices[j] - prices[i] + dp[j+2], dp[i], dp[i+1]])
+        
+        return dp[0]
